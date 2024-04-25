@@ -22,7 +22,7 @@ warnings.filterwarnings("ignore")
 # edit the config
 device = torch.device('cuda:0')
 dataset_name = 'vox' # ['vox', 'taichi', 'ted', 'mgif']
-source_image_path = './assets/source.png'
+source_image_path = './assets/avatar.png'
 driving_video_path = 'recorded_video.mp4'
 output_video_path = './generated.mp4'
 config_path = 'config/vox-256.yaml'
