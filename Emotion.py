@@ -359,7 +359,8 @@ def video_frame(label, bbox):
   return data
 
 
-def run():
+def Execute_Emotion():
+
     video_stream()
     # label for video
     label_html = 'Capturing...'
