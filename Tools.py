@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 
 
 # edit the config
-device = torch.device('cuda:0')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 dataset_name = 'vox' # ['vox', 'taichi', 'ted', 'mgif']
 source_image_path = './assets/avatar.png'
 driving_video_path = 'recorded_video.mp4'
