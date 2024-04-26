@@ -386,23 +386,23 @@ def run():
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         results = face_mesh.process(image)
 
-        #try:
-        for face_landmarks in results.multi_face_landmarks:
-          brect = calc_bounding_rect(image, face_landmarks)
-
-          landmark_list = calc_landmark_list(image, face_landmarks)
-
-          pre_processed_landmark_list = pre_process_landmark(
-                    landmark_list)
-
-          facial_emotion_id = keypoint_classifier(pre_processed_landmark_list)
-          bbox_array = cv2.rectangle(bbox_array,(brect[0],brect[1]),(brect[2],brect[3]),(255,255,255),2)
-          bbox_array = cv2.putText(bbox_array, str(keypoint_classifier_labels[facial_emotion_id]),
-                            (brect[0],brect[1]), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255),2)
-
-          bbox_array[:,:,3] = (bbox_array.max(axis = 2) > 0 ).astype(int) * 255
-          bbox_bytes = bbox_to_bytes(bbox_array)
-          bbox = bbox_bytes
-        #except:
-          #continue
+        try:
+            for face_landmarks in results.multi_face_landmarks:
+              brect = calc_bounding_rect(image, face_landmarks)
+    
+              landmark_list = calc_landmark_list(image, face_landmarks)
+    
+              pre_processed_landmark_list = pre_process_landmark(
+                        landmark_list)
+    
+              facial_emotion_id = keypoint_classifier(pre_processed_landmark_list)
+              bbox_array = cv2.rectangle(bbox_array,(brect[0],brect[1]),(brect[2],brect[3]),(255,255,255),2)
+              bbox_array = cv2.putText(bbox_array, str(keypoint_classifier_labels[facial_emotion_id]),
+                                (brect[0],brect[1]), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255),2)
+    
+              bbox_array[:,:,3] = (bbox_array.max(axis = 2) > 0 ).astype(int) * 255
+              bbox_bytes = bbox_to_bytes(bbox_array)
+              bbox = bbox_bytes
+        except:
+              continue
 
